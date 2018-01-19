@@ -1,0 +1,31 @@
+:root {
+	--body-width: 36em;
+	--hover-color: #eee;
+}
+
+* { box-sizing: border-box }
+
+body {
+        max-width: var(--body-width);
+        margin: auto;
+        font-size: 16px;
+        font-family: sans-serif;
+        color: #333;
+        background-color: #eee;
+}
+
+a:link, a:visited {
+        text-decoration: none;
+        color: #04a;
+}
+a:visited { opacity: .9 }
+a:link:hover, a:visited:hover { text-decoration: underline }
+
+dt {
+	font-weight: bold;
+	margin-top: 1ex;
+}
+dd > ul,
+dd > ol { padding-left: 0 }
+
+summary { cursor: row-resize }

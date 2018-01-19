@@ -1,0 +1,64 @@
+<!doctype html>
+
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<title>color maps &amp; palettes</title>
+<link rel=stylesheet href=/using-color/base.css>
+<link rel=stylesheet href=/base.css>
+
+<h1>Color Maps &amp; Palettes</h1>
+<p>Depending on your axis type you need one of two basic tools:
+<dl>
+	<dt>Continuous or practically continuous (e.g. whole numbers with high variance)
+	<dd>A colormap, i.e. a function mapping values to colors.
+		<details>
+			<summary>In R</summary>
+			Use <a href="https://www.rdocumentation.org/packages/scales/versions/0.4.1">scales</a> or use
+			<a href="http://docs.ggplot2.org/">ggplot</a> in the first place.
+		</details>
+		<details>
+			<summary>In matplotlib</summary>
+			<code>plt.rcParams['image.cmap'] = ...</code>, <code>plot(..., cmap=...)</code>
+		</details>
+	<dt>Few discrete values (e.g. qualitative)
+	<dd>A palette, i.e. a fixed-size set of colors.
+		<details>
+			<summary>In R</summary>
+			<code>palette()</code> to get and <code>palette(colors)</code> to set.
+		</details>
+		<details>
+			<summary>In matplotlib</summary>
+			<code>plt.rcParams['axes.color_cycle'] = ...</code>, <code>ax.set_color_cycle(...)</code>
+		</details>
+</dl>
+<p>This means that you want:
+<dl>
+	<dt>Never
+	<dd>jet, hot, … (no perceptive continuity/uniformity, ugly, false (artifact) features, unsuited for color blindness, no guaranteed contrast)
+	<dt>For continuums: <a href="http://matplotlib.org/users/colormaps.html">Perceptually uniform colormaps</a>
+	<dd><ul>
+		<li><a href="http://matplotlib.org/cmocean/">cmocean</a>
+		<li><details>
+			<summary><a href="https://jiffyclub.github.io/palettable/cubehelix/">cubehelix</a> (see <code>Cubehelix.make</code> for parametric version)</summary>
+			One variant built into matplotlib.<br/>
+			Parametric versions for R in
+			<a href="http://bioconductor.org/packages/release/bioc/html/destiny.html">destiny</a> and
+			<a href="https://www.rdocumentation.org/packages/rje/versions/1.9/topics/cubeHelix">rje</a>
+		</details>
+		<li><details>
+			<summary><a href="https://bids.github.io/colormap">viridis/plasma/magma/inferno</a></summary>
+			Included in matplotlib. For R, use <a href="https://www.rdocumentation.org/packages/viridis/versions/0.3.4">viridis</a>
+		</details>
+	</ul>
+	<dt>For discrete values: Fixed-size palettes <a href="http://tools.medialab.sciences-po.fr/iwanthue/theory.php">with high contrast</a>
+	<dd><ul>
+		<li><a href="http://tools.medialab.sciences-po.fr/iwanthue/">i want hue</a>
+		<li><details>
+			<summary><a href="https://jiffyclub.github.io/palettable/colorbrewer/qualitative/#previews">colorbrewer qualitative</a></summary>
+			Included in matplotlib. For R, use<br/>
+			<a href="https://www.rdocumentation.org/packages/scales/versions/0.4.1/topics/brewer_pal"><code>scales::brewer_pal</code></a> (more versatile), or<br/>
+			<a href="https://www.rdocumentation.org/packages/RColorBrewer/versions/1.1-2/topics/RColorBrewer">RColorBrewer</a> (more specific)
+		</details>
+	</ul>
+</ul>
+
